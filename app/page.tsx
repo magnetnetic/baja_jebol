@@ -1,11 +1,14 @@
+import Gallery from '@/components/home/gallery'
+import Hero from '@/components/home/hero'
+import Nav from '@/components/ui/nav'
 import React from 'react'
 
 export default function Home() {
   return (
-    <section className='py-24'>
-      <div className='container'>
-        <h1 className='text-3xl font-bold'>Next TS Starter</h1>
-      </div>
-    </section>
+    <div>
+      <Nav />
+      <Hero />
+      <Gallery />
+    </div>
   )
 }
