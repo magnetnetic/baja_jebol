@@ -29,7 +29,7 @@ export default function About() {
         </div>
         <div className='flex flex-row items-center justify-start gap-2'>
           <FontAwesomeIcon icon={faBolt} size='xs' className='text-amber-300' />
-          <p>Lebih baik menyesal tidak beli daripada menyesal membeli</p>
+          <p>Lebih baik beli daripada menyesal tidak beli</p>
         </div>
         <div className='flex flex-row items-center justify-start gap-2'>
           <FontAwesomeIcon icon={faBolt} size='xs' className='text-amber-300' />
