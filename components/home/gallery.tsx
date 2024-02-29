@@ -59,7 +59,7 @@ export default function Gallery() {
             }}
           >
             <Card
-              title='Kings Fall Connoissur'
+              title='Kings Fall Connoisseur'
               completion='69 Clears'
               imageSrc='/kings-fall.jpg'
             />
