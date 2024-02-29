@@ -1,6 +1,9 @@
+'use client'
+
 import { faDiscord } from '@fortawesome/free-brands-svg-icons'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion } from 'framer-motion'
 
 export default function About() {
   return (
@@ -39,7 +42,17 @@ export default function About() {
           <FontAwesomeIcon icon={faBolt} size='xs' className='text-amber-300' />
           <p>Jarang makan siang</p>
         </div>
-        <div className='bg my-6 mt-auto flex w-5/6 flex-row gap-6'>
+        <motion.div
+          className='bg my-6 mt-auto flex w-5/6 flex-row gap-6'
+          initial='offscreen'
+          whileInView='onscreen'
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.8 }}
+          variants={{
+            offscreen: { y: 100, opacity: 0 },
+            onscreen: { y: 0, opacity: 1 }
+          }}
+        >
           <p className='text-pretty leading-relaxed tracking-wide'>
             Seekor kera, terkurung, terpenjara dalam gua <br /> Di gunung
             tinggi, sunyi tempat hukuman para dewa <br /> Bertindak sesuka hati
@@ -54,7 +67,7 @@ export default function About() {
             jati diri <br /> Semua &apos;kan dihadapi dengan gagah berani <br />
             Walau aral rintangan setiap saat datang &apos;tuk menguji
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

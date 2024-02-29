@@ -41,8 +41,7 @@ export default function Gallery() {
           transition={{ duration: 0.8 }}
           variants={{
             offscreen: { x: -100, opacity: 0 },
-            onscreen: { x: 0, opacity: 1 },
-            hidden: { opacity: 0, scale: 0 }
+            onscreen: { x: 0, opacity: 1 }
           }}
         >
           <About />
