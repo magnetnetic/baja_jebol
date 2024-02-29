@@ -28,8 +28,8 @@ export default function NavLinks() {
           <Link
             key={link.name}
             href={link.href}
-            className={clsx('hover:text-sky-200', {
-              'text-sky-200': pathname === link.href
+            className={clsx('hover:text-amber-300', {
+              'text-amber-300': pathname === link.href
             })}
           >
             <p>{link.name}</p>

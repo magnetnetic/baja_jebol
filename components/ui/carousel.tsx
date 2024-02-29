@@ -12,7 +12,11 @@ export function EmblaCarousel() {
 
   return (
     <div className='flex h-full flex-row items-center justify-center text-white'>
-      <FontAwesomeIcon icon={faQuoteLeft} size='2xl' className='fa-icon' />
+      <FontAwesomeIcon
+        icon={faQuoteLeft}
+        size='2xl'
+        className='fa-icon text-amber-300'
+      />
       <div className='embla bg mx-12 h-full w-1/4 text-xl' ref={emblaRef}>
         <div className='embla__container h-full text-center italic'>
           <div className='embla__slide flex items-center justify-center'>
@@ -41,7 +45,11 @@ export function EmblaCarousel() {
           </div>
         </div>
       </div>
-      <FontAwesomeIcon icon={faQuoteRight} size='2xl' className='fa-icon' />
+      <FontAwesomeIcon
+        icon={faQuoteRight}
+        size='2xl'
+        className='fa-icon text-amber-300'
+      />
     </div>
   )
 }
