@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import titan from '/public/titan-logo.png'
+import titan from '/public/saint-14-stuff.webp'
 
 export default function CarouselBackground() {
   return (

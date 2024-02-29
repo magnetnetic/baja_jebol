@@ -17,7 +17,7 @@ export default function Card() {
       <div className='m-12 text-center'>
         <h1 className='text-xl font-bold'>King&apos;s Fall Connoisseur</h1>
         <h1 className='m-4 text-2xl font-semibold uppercase underline underline-offset-4'>
-          69 Completions
+          Completions 69 Completions
         </h1>
       </div>
       <p className='mb-2 mt-auto text-sm'>nice</p>
