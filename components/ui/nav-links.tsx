@@ -11,10 +11,6 @@ const links = [
   {
     name: 'About',
     href: '#about'
-  },
-  {
-    name: 'Gallery',
-    href: '#gallery'
   }
 ]
 

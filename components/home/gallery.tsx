@@ -4,6 +4,7 @@ import Card from '../ui/card'
 import { EmblaCarousel } from '../ui/carousel'
 import CarouselBackground from './carousuel-background'
 import About from './about'
+import { motion } from 'framer-motion'
 
 const BANNER_HEIGHT = '30vh'
 
@@ -28,28 +29,59 @@ function ParallaxBannerComponent() {
 export default function Gallery() {
   return (
     <section
-      id='gallery'
-      className='flex h-[50vh] flex-col bg-blue-950 pt-8 md:h-[100vh]'
+      id='about'
+      className='flex h-[100vh] flex-col bg-blue-950 pt-8 lg:h-[100vh]'
     >
-      <div className='container flex flex-row justify-between gap-4'>
-        <div className=' text-sky-100'>
+      <div className='container flex flex-col justify-between gap-4 lg:flex-row'>
+        <motion.div
+          className='text-sky-100'
+          initial='offscreen'
+          whileInView='onscreen'
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.8 }}
+          variants={{
+            offscreen: { x: -100, opacity: 0 },
+            onscreen: { x: 0, opacity: 1 },
+            hidden: { opacity: 0, scale: 0 }
+          }}
+        >
           <About />
-        </div>
+        </motion.div>
         <div className='flex flex-col'>
-          <div className='flex flex-col items-center justify-center'>
+          <motion.div
+            className='flex flex-col items-center justify-center'
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            variants={{
+              visible: { opacity: 1, scale: 1 },
+              hidden: { opacity: 0, scale: 0 }
+            }}
+          >
             <Card
               title='Kings Fall Connoissur'
               completion='69 Clears'
               imageSrc='/kings-fall.jpg'
             />
-          </div>
-          <div className='flex flex-col items-center justify-center'>
+          </motion.div>
+          <motion.div
+            className='flex flex-col items-center justify-center'
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            variants={{
+              visible: { opacity: 1, scale: 1 },
+              hidden: { opacity: 0, scale: 0 }
+            }}
+          >
             <Card
               title='Trial of Osiris Loyalist'
               completion='6 Flawless'
               imageSrc='/trials.jpg'
             />
-          </div>
+          </motion.div>
         </div>
       </div>
 

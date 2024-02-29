@@ -17,7 +17,10 @@ export function EmblaCarousel() {
         size='2xl'
         className='fa-icon text-amber-300'
       />
-      <div className='embla bg mx-12 h-full w-1/4 text-xl' ref={emblaRef}>
+      <div
+        className='embla bg mx-12 h-full w-1/2 text-xl md:w-1/4'
+        ref={emblaRef}
+      >
         <div className='embla__container h-full text-center italic'>
           <div className='embla__slide flex items-center justify-center'>
             Sek yo rek tak [bukak engram, ngebuild, transmog]

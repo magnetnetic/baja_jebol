@@ -40,7 +40,7 @@ export default function Nav() {
           <div className='flex flex-row space-x-6'>
             <NavLinks />
           </div>
-          <div>Soup</div>
+          <div></div>
         </div>
       </div>
     </div>

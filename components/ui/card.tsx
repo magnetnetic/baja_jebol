@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Image from 'next/image'
+import { useInView } from 'framer-motion'
 
 export default function Card({
   imageSrc,
