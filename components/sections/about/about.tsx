@@ -1,9 +1,9 @@
 'use client'
 import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax'
-import Card from '../ui/card'
-import { EmblaCarousel } from '../ui/carousel'
+import Card from '../../ui/card'
+import { EmblaCarousel } from './carousel'
 import CarouselBackground from './carousuel-background'
-import About from './about'
+import AboutDescription from './about-description'
 import { motion } from 'framer-motion'
 
 const BANNER_HEIGHT = '30vh'
@@ -26,7 +26,7 @@ function ParallaxBannerComponent() {
   )
 }
 
-export default function Gallery() {
+export default function About() {
   return (
     <section
       id='about'
@@ -44,7 +44,7 @@ export default function Gallery() {
             onscreen: { x: 0, opacity: 1 }
           }}
         >
-          <About />
+          <AboutDescription />
         </motion.div>
         <div className='flex flex-col'>
           <motion.div

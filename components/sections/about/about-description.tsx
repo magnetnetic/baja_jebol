@@ -5,7 +5,7 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from 'framer-motion'
 
-export default function About() {
+export default function AboutDescription() {
   return (
     <div className='mx-auto flex h-full w-auto flex-col justify-start gap-1'>
       <div className='border-l-2 border-amber-300 ps-4 '>
