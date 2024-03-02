@@ -46,9 +46,9 @@ export default function About() {
         >
           <AboutDescription />
         </motion.div>
-        <div className='flex flex-col'>
+        <div className='flex w-full flex-row justify-between gap-12 lg:flex-col'>
           <motion.div
-            className='flex flex-col items-center justify-center'
+            className='bg flex w-full flex-col items-center justify-center'
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true }}
@@ -65,7 +65,7 @@ export default function About() {
             />
           </motion.div>
           <motion.div
-            className='flex flex-col items-center justify-center'
+            className='flex w-full flex-col items-center justify-center'
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true }}
@@ -84,7 +84,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className='h-[30vh]'>
+      <div className='h-full'>
         <ParallaxBannerComponent />
       </div>
     </section>

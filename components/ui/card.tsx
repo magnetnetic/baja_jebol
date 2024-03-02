@@ -12,7 +12,7 @@ export default function Card({
   completion: string
 }) {
   return (
-    <div className='mx-auto mb-8 flex w-[40rem] flex-col items-center justify-center gap-4 border border-sky-300 p-6 text-sky-100'>
+    <div className='mx-auto mb-8 flex w-full flex-col items-center justify-center gap-4 border border-sky-300 p-6 text-sky-100'>
       <div className='relative h-36 w-36'>
         <Image
           unoptimized
