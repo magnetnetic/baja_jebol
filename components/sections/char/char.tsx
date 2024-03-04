@@ -3,7 +3,6 @@ import {
   ROOT_PATH,
   fetchActivityHistory,
   fetchAggregateActivityStats,
-  fetchCharacterList,
   fetchEntityDefinition
 } from '@/lib/data'
 import {
@@ -24,49 +23,13 @@ import {
   getVaultOfGlassDefinition,
   getVowOfDiscipleDefinition
 } from '@/lib/definitions/raid'
-
-interface ActivityHistoryList {
-  activities: ActivityHistory[]
-}
-
-interface ActivityHistory {
-  period: string
-  activityDetails: ActivityDetail
-}
-
-interface ActivityDetail {
-  referenceId: number
-  directorActivityHash: number
-  instanceId: string
-}
-
-interface AggregateActivityStatsList {
-  activities: AggregateActivityStats[]
-}
-
-interface AggregateActivityStats {
-  activityHash: number
-  values: AggregateActivityStatsValue
-}
-
-interface AggregateActivityStatsValue {
-  activityCompletions: {
-    statId: string
-    basic: {
-      value: number
-      displayValue: string
-    }
-  }
-}
-
-interface ActivityDefinition {
-  displayProperties: {
-    description: string
-    name: string
-    icon: string
-  }
-  pgcrImage: string
-}
+import {
+  ActivityDefinition,
+  ActivityHistory,
+  ActivityHistoryList,
+  AggregateActivityStats,
+  AggregateActivityStatsList
+} from '@/lib/type'
 
 export default async function Char() {
   const activityData: ActivityHistoryList = await fetchActivityHistory()
@@ -121,29 +84,14 @@ export default async function Char() {
     }
   )
 
-  const gardenRaidDefinition: ActivityDefinition =
-    await getGardenOfSalvationDefinition()
-
-  const lastWishRaidDefinition: ActivityDefinition =
-    await getLastWishDefinition()
-
-  const deepStoneCryptRaidDefinition: ActivityDefinition =
-    await getDeepStoneCryptDefinition()
-
-  const vaultOfGlassRaidDefinition: ActivityDefinition =
-    await getVaultOfGlassDefinition()
-
-  const vowOfDiscipleRaidDefinition: ActivityDefinition =
-    await getVowOfDiscipleDefinition()
-
-  const kingsFallRaidDefinition: ActivityDefinition =
-    await getKingsFallDefinition()
-
-  const rootOfNightmareRaidDefinition: ActivityDefinition =
-    await getRootOfNightmareDefinition()
-
-  const crotasEndRaidDefinition: ActivityDefinition =
-    await getCrotasEndDefinition()
+  const gardenRaidDefinition = await getGardenOfSalvationDefinition()
+  const lastWishRaidDefinition = await getLastWishDefinition()
+  const deepStoneCryptRaidDefinition = await getDeepStoneCryptDefinition()
+  const vaultOfGlassRaidDefinition = await getVaultOfGlassDefinition()
+  const vowOfDiscipleRaidDefinition = await getVowOfDiscipleDefinition()
+  const kingsFallRaidDefinition = await getKingsFallDefinition()
+  const rootOfNightmareRaidDefinition = await getRootOfNightmareDefinition()
+  const crotasEndRaidDefinition = await getCrotasEndDefinition()
 
   function convertISOToReadable(isoString: string) {
     const date = new Date(isoString)
