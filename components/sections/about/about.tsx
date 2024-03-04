@@ -6,12 +6,12 @@ import CarouselBackground from './carousuel-background'
 import AboutDescription from './about-description'
 import { motion } from 'framer-motion'
 
-const BANNER_HEIGHT = '30vh'
+const BANNER_HEIGHT = '25vh'
 
 function ParallaxBannerComponent() {
   return (
     <ParallaxBanner style={{ height: BANNER_HEIGHT }}>
-      <ParallaxBannerLayer expanded={true} speed={-25}>
+      <ParallaxBannerLayer expanded={true} speed={-40}>
         <div className='h-full'>
           <CarouselBackground />
         </div>
