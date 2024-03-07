@@ -1,7 +1,13 @@
 import { unstable_noStore as noStore } from 'next/cache'
+import { DEF_ACTIVITY } from './definitions/entity'
+import {
+  ActivityDefinition,
+  AggregateActivityStats,
+  AggregateActivityStatsList
+} from './type'
 
 export const ROOT_PATH = 'https://www.bungie.net'
-const API_KEY: string = process.env.X_API_KEY as string
+const API_KEY = 'fb4d7364a9af4ac0a2bdd12d69ae72b1'
 const PROFILE_PATH =
   '/Platform/Destiny2/3/Profile/4611686018468068912/?components=200'
 const ACTIVITY_PATH =
@@ -37,11 +43,51 @@ export async function fetchEntityDefinition(
   entityType: string,
   hashIdentifier: number
 ) {
-  const res = await fetch(
-    `${ROOT_PATH}/Platform/Destiny2/Manifest/${entityType}/${hashIdentifier}/`,
-    { headers: { 'x-api-key': API_KEY } }
-  )
-  const data = await res.json()
+  try {
+    const res = await fetch(
+      `${ROOT_PATH}/Platform/Destiny2/Manifest/${entityType}/${hashIdentifier}/`,
+      { headers: { 'x-api-key': API_KEY } }
+    )
+    const data = await res.json()
 
-  return data.Response
+    return data.Response
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const fetchActivityDataWithDefinitions = async (
+  activityHashesToFetch: number[]
+) => {
+  const filteredActivityStats = await fetchFilteredActivityStats(
+    activityHashesToFetch
+  )
+
+  const activitiesWithDefinitions = await Promise.all(
+    filteredActivityStats.map(async (activityStat: AggregateActivityStats) => {
+      const activityDefinition: ActivityDefinition =
+        await fetchEntityDefinition(DEF_ACTIVITY, activityStat.activityHash)
+
+      return {
+        ...activityStat,
+        definition: activityDefinition
+      }
+    })
+  )
+
+  return activitiesWithDefinitions
+}
+
+export const fetchFilteredActivityStats = async (
+  activityHashesToFetch: number[]
+) => {
+  const aggregateActivityStats: AggregateActivityStatsList =
+    await fetchAggregateActivityStats()
+
+  const filteredActivityStats = aggregateActivityStats.activities.filter(
+    activityStat => activityHashesToFetch.includes(activityStat.activityHash)
+  )
+
+  return filteredActivityStats
 }

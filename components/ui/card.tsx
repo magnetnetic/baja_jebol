@@ -1,6 +1,5 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import { useInView } from 'framer-motion'
 
 export default function Card({
   imageSrc,
@@ -12,23 +11,25 @@ export default function Card({
   completion: string
 }) {
   return (
-    <div className='mx-auto mb-8 flex w-full flex-col items-center justify-center gap-4 border border-sky-300 p-6 text-sky-100'>
-      <div className='relative h-36 w-36'>
-        <Image
-          unoptimized
-          src={imageSrc}
-          fill
-          sizes='100%'
-          alt='test'
-          style={{ objectFit: 'cover' }}
-        />
+    <div className='relative mx-auto flex h-72 w-full flex-col items-center justify-between gap-4 border border-sky-300 p-6 text-sky-100'>
+      <div className='flex flex-col items-center'>
+        <div className='relative h-36 w-36 md:h-32 md:w-32 lg:h-28 lg:w-28'>
+          <Image
+            unoptimized
+            src={imageSrc}
+            fill
+            sizes='100%'
+            alt='test'
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
+        <div className='mt-4 flex-1 overflow-hidden text-center'>
+          <p className='text-base'>{title}</p>
+        </div>
       </div>
-      <div className='text-center'>
-        <h1 className='text-2xl font-bold'>{title}</h1>
-        <h1 className='border-b-2 border-amber-300 pb-2 text-xl font-semibold uppercase'>
-          {completion}
-        </h1>
-      </div>
+      <p className='border-b-2 border-amber-300 text-sm font-semibold uppercase'>
+        {completion} Clears
+      </p>
     </div>
   )
 }

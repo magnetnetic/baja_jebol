@@ -40,3 +40,9 @@ export type ActivityDefinition = {
   }
   pgcrImage: string
 }
+
+export type RaidStat = {
+  activityHash: number
+  values: AggregateActivityStatsValue
+  definition: ActivityDefinition
+}

@@ -46,6 +46,12 @@ export function EmblaCarousel() {
           <div className='embla__slide flex items-center justify-center'>
             Bismillah rampage
           </div>
+          <div className='embla__slide flex items-center justify-center'>
+            Mencari kesempatan dalam kesempitan
+          </div>
+          <div className='embla__slide flex items-center justify-center'>
+            Pelan-pelan tapi tidak pasti
+          </div>
         </div>
       </div>
       <FontAwesomeIcon
