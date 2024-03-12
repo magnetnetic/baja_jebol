@@ -1,7 +1,3 @@
-export type ActivityHistoryList = {
-  activities: ActivityHistory[]
-}
-
 export type ActivityHistory = {
   period: string
   activityDetails: ActivityDetail
@@ -43,6 +39,13 @@ export type ActivityDefinition = {
 
 export type RaidStat = {
   activityHash: number
+  values: AggregateActivityStatsValue
+  definition: ActivityDefinition
+}
+
+export type ActivityStat = {
+  period: string
+  activityDetails: ActivityDetail
   values: AggregateActivityStatsValue
   definition: ActivityDefinition
 }

@@ -18,7 +18,7 @@ export function EmblaCarousel() {
         className='fa-icon text-amber-300'
       />
       <div
-        className='embla bg mx-12 h-full w-1/2 text-2xl md:w-1/4'
+        className='embla bg mx-12 h-full w-1/2 text-2xl md:w-2/4'
         ref={emblaRef}
       >
         <div className='embla__container h-full text-center italic'>

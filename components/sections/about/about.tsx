@@ -1,9 +1,8 @@
 import CardGrid from '@/components/ui/card-grid'
 import ParallaxBannerComponent from './parallax-banner'
 import AboutDescription from './about-description'
-import { RaidStat } from '@/lib/type'
 
-export default async function About({ raidStats }: { raidStats: RaidStat[] }) {
+export default async function About() {
   return (
     <section
       id='about'
@@ -14,7 +13,7 @@ export default async function About({ raidStats }: { raidStats: RaidStat[] }) {
           <AboutDescription />
         </div>
         <div className='mb-8'>
-          <CardGrid raidStats={raidStats} />
+          <CardGrid />
         </div>
       </div>
 

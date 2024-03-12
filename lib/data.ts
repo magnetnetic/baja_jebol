@@ -2,6 +2,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 import { DEF_ACTIVITY } from './definitions/entity'
 import {
   ActivityDefinition,
+  ActivityHistory,
   AggregateActivityStats,
   AggregateActivityStatsList
 } from './type'
@@ -57,10 +58,12 @@ export async function fetchEntityDefinition(
   }
 }
 
-export const fetchActivityDataWithDefinitions = async (
+// RAID DATA
+
+export const fetchRaidDataWithDefinitions = async (
   activityHashesToFetch: number[]
 ) => {
-  const filteredActivityStats = await fetchFilteredActivityStats(
+  const filteredActivityStats = await fetchFilteredRaidStats(
     activityHashesToFetch
   )
 
@@ -79,7 +82,7 @@ export const fetchActivityDataWithDefinitions = async (
   return activitiesWithDefinitions
 }
 
-export const fetchFilteredActivityStats = async (
+export const fetchFilteredRaidStats = async (
   activityHashesToFetch: number[]
 ) => {
   const aggregateActivityStats: AggregateActivityStatsList =
@@ -90,4 +93,27 @@ export const fetchFilteredActivityStats = async (
   )
 
   return filteredActivityStats
+}
+
+// ACTIVITY HISTORY DATA
+
+export const fetchActivityHistoryWithDefinitions = async () => {
+  const activityHistory = await fetchActivityHistory()
+
+  const activitiesWithDefinitions = await Promise.all(
+    activityHistory.activities.map(async (activity: ActivityHistory) => {
+      const activityDefinition: ActivityDefinition =
+        await fetchEntityDefinition(
+          DEF_ACTIVITY,
+          activity.activityDetails.directorActivityHash
+        )
+
+      return {
+        ...activity,
+        definition: activityDefinition
+      }
+    })
+  )
+
+  return activitiesWithDefinitions
 }
