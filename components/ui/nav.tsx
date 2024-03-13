@@ -37,10 +37,7 @@ export default function Nav() {
       <div className='container'>
         <div className='flex flex-row items-center justify-between'>
           <Link href='/'>Baja Jebol</Link>
-          <div className='flex flex-row space-x-6'>
-            <NavLinks />
-          </div>
-          <div></div>
+          <div>Death Counter: </div>
         </div>
       </div>
     </div>

@@ -43,9 +43,42 @@ export type RaidStat = {
   definition: ActivityDefinition
 }
 
-export type ActivityStat = {
-  period: string
-  activityDetails: ActivityDetail
+export type ActivityStat = ActivityHistory & {
   values: AggregateActivityStatsValue
   definition: ActivityDefinition
+}
+
+export type ItemDefinition = {
+  displayProperties: {
+    name: string
+    icon: string
+  }
+  screenshot: string
+  itemTypeDisplayName: string
+  flavorText: string
+  itemTypeAndTierDisplayName: string
+  summaryItemHash: number
+  defaultDamageType: number
+  defaultDamageTypeHash: number
+}
+
+export type Item = {
+  itemHash: number
+  itemInstanceId: string
+  bucketHash: number
+  state: number
+}
+
+export type ItemStat = Item & {
+  definition: ItemDefinition
+  damageTypeDefinition: DamageTypeDefinition
+}
+
+export type DamageTypeDefinition = {
+  displayProperties: {
+    description: string
+    name: string
+    icon: string
+  }
+  transparentIconPath: string
 }

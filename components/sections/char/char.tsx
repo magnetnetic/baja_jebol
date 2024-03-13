@@ -1,11 +1,12 @@
 import { fetchActivityHistoryWithDefinitions } from '@/lib/data'
 import ActivityCard from './activity-card'
 import { ActivityStat } from '@/lib/type'
+import CardGrid from '@/components/ui/card-grid'
 
 export default async function Char() {
   const activityStats: ActivityStat[] =
     await fetchActivityHistoryWithDefinitions()
-  console.log(activityStats[0])
+  // console.log(activityStats[0])
 
   function convertISOToReadable(isoString: string) {
     const date = new Date(isoString)
@@ -21,6 +22,9 @@ export default async function Char() {
               <ActivityCard activity={activity} />
             </div>
           ))}
+        </div>
+        <div className='mb-8'>
+          <CardGrid />
         </div>
       </div>
     </section>
