@@ -10,7 +10,7 @@ import {
   AggregateActivityStats,
   AggregateActivityStatsList,
   Item,
-  DamageTypeDefinition
+  Socket
 } from './type'
 
 export const ROOT_PATH = 'https://www.bungie.net'
@@ -22,11 +22,14 @@ const ACTIVITY_PATH =
 const AGGREGATE_ACTIVITY_PATH =
   '/Platform/Destiny2/3/Account/4611686018468068912/Character/2305843009344565737/Stats/AggregateActivityStats/'
 export const GET_CHARACTER_EQUIPMENT_TITAN =
-  '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009344565737/?components=205'
+  '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009344565737/?components=205,305'
 export const GET_CHARACTER_EQUIPMENT_HUNTER =
   '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009351224217/?components=205'
 export const GET_CHARACTER_EQUIPMENT_WARLOCK =
   '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009417074253/?components=205'
+export const GET_ITEM_SOCKET = (itemInstanceId: string) => {
+  return `/Platform/Destiny2/3/Profile/4611686018468068912/Item/${itemInstanceId}/?components=305`
+}
 
 if (!API_KEY) {
   throw new Error('API_KEY is not defined')
@@ -146,12 +149,32 @@ export async function fetchCharacterEquipment(character_endpoint: string) {
         equipmentDefinition.defaultDamageTypeHash
       )
 
+      const sockets = await fetchItemSockets(equipment.itemInstanceId)
+      const itemSockets = await Promise.all(
+        sockets.sockets.data.sockets.map(async (socket: Socket) => {
+          const socketDefinition = await fetchEntityDefinition(
+            DEF_INVENTORY_ITEM,
+            socket.plugHash
+          )
+          return {
+            ...socket,
+            definition: socketDefinition
+          }
+        })
+      )
+
       return {
         ...equipment,
         definition: equipmentDefinition,
-        damageTypeDefinition: damageTypeDefinition
+        damageTypeDefinition: damageTypeDefinition,
+        itemSockets
       }
     })
   )
   return equipmentsWithDefinitions
+}
+
+export async function fetchItemSockets(itemInstanceId: string) {
+  const itemSockets = await fetchData(GET_ITEM_SOCKET(itemInstanceId))
+  return itemSockets
 }

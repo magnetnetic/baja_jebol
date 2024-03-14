@@ -72,6 +72,7 @@ export type Item = {
 export type ItemStat = Item & {
   definition: ItemDefinition
   damageTypeDefinition: DamageTypeDefinition
+  itemSockets: Socket[]
 }
 
 export type DamageTypeDefinition = {
@@ -81,4 +82,17 @@ export type DamageTypeDefinition = {
     icon: string
   }
   transparentIconPath: string
+}
+
+export type Socket = {
+  plugHash: number
+  isEnabled: boolean
+  isVisible: boolean
+  definition: {
+    displayProperties: {
+      description: string
+      name: string
+      icon: string
+    }
+  }
 }

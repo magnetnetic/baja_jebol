@@ -15,7 +15,7 @@ export default async function Char() {
 
   return (
     <section id='char' className='flex h-full flex-col bg-blue-950 pt-4'>
-      <div className='container flex flex-row text-sky-100'>
+      <div className='container flex flex-col text-sky-100'>
         <div className='grid w-full grid-cols-1 gap-4 md:w-1/2'>
           {activityStats.map((activity: ActivityStat) => (
             <div key={activity.period}>
