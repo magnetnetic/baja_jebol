@@ -2,15 +2,21 @@ import About from '@/components/sections/about/about'
 import Char from '@/components/sections/char/char'
 import Hero from '@/components/sections/hero/hero'
 import Nav from '@/components/ui/nav'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export default async function Home() {
   return (
     <div>
       <Nav />
-      <Hero />
-      <About />
-      <Char />
+      <Suspense>
+        <Hero />
+      </Suspense>
+      <Suspense>
+        <About />
+      </Suspense>
+      <Suspense>
+        <Char />
+      </Suspense>
     </div>
   )
 }

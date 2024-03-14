@@ -6,12 +6,8 @@ export default async function About() {
   return (
     <section id='about' className='flex h-full flex-col bg-blue-950 pt-8'>
       <div className='container flex flex-col justify-between gap-4 lg:flex-row'>
-        <div>
-          <AboutDescription />
-        </div>
-        <div>
-          <CharacterEquipment />
-        </div>
+        <AboutDescription />
+        <CharacterEquipment />
       </div>
       <div className='h-full'>
         <ParallaxBannerComponent />

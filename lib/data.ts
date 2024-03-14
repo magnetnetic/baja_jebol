@@ -135,41 +135,42 @@ export async function fetchActivityHistoryWithDefinitions() {
 // CHARACTER DATA
 
 export async function fetchCharacterEquipment(character_endpoint: string) {
-  noStore()
   const equipments = await fetchData(character_endpoint)
 
   const equipmentsWithDefinitions = await Promise.all(
-    equipments.equipment.data.items.slice(0, 8).map(async (equipment: Item) => {
-      const equipmentDefinition = await fetchEntityDefinition(
-        DEF_INVENTORY_ITEM,
-        equipment.itemHash
-      )
-      const damageTypeDefinition = await fetchEntityDefinition(
-        DEF_DAMAGE_TYPE,
-        equipmentDefinition.defaultDamageTypeHash
-      )
+    equipments.equipment.data.items
+      .slice(0, 12)
+      .map(async (equipment: Item) => {
+        const equipmentDefinition = await fetchEntityDefinition(
+          DEF_INVENTORY_ITEM,
+          equipment.itemHash
+        )
+        const damageTypeDefinition = await fetchEntityDefinition(
+          DEF_DAMAGE_TYPE,
+          equipmentDefinition.defaultDamageTypeHash
+        )
 
-      const sockets = await fetchItemSockets(equipment.itemInstanceId)
-      const itemSockets = await Promise.all(
-        sockets.sockets.data.sockets.map(async (socket: Socket) => {
-          const socketDefinition = await fetchEntityDefinition(
-            DEF_INVENTORY_ITEM,
-            socket.plugHash
-          )
-          return {
-            ...socket,
-            definition: socketDefinition
-          }
-        })
-      )
+        const sockets = await fetchItemSockets(equipment.itemInstanceId)
+        const itemSockets = await Promise.all(
+          sockets.sockets.data.sockets.map(async (socket: Socket) => {
+            const socketDefinition = await fetchEntityDefinition(
+              DEF_INVENTORY_ITEM,
+              socket.plugHash
+            )
+            return {
+              ...socket,
+              definition: socketDefinition
+            }
+          })
+        )
 
-      return {
-        ...equipment,
-        definition: equipmentDefinition,
-        damageTypeDefinition: damageTypeDefinition,
-        itemSockets
-      }
-    })
+        return {
+          ...equipment,
+          definition: equipmentDefinition,
+          damageTypeDefinition: damageTypeDefinition,
+          itemSockets
+        }
+      })
   )
   return equipmentsWithDefinitions
 }
