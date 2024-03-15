@@ -6,7 +6,6 @@ import CardGrid from '@/components/ui/card-grid'
 export default async function Char() {
   const activityStats: ActivityStat[] =
     await fetchActivityHistoryWithDefinitions()
-  // console.log(activityStats[0])
 
   function convertISOToReadable(isoString: string) {
     const date = new Date(isoString)
@@ -15,7 +14,7 @@ export default async function Char() {
 
   return (
     <section id='char' className='flex h-full flex-col bg-blue-950 pt-4'>
-      <div className='container flex flex-row text-sky-100'>
+      <div className='container flex flex-col gap-4 text-sky-100'>
         <div className='grid w-full grid-cols-1 gap-4 md:w-1/2'>
           {activityStats.map((activity: ActivityStat) => (
             <div key={activity.period}>

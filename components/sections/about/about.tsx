@@ -10,7 +10,7 @@ export default async function About() {
         <AboutDescription />
         <CharacterEquipment />
       </div>
-      <div className='h-full'>
+      <div className='mt-4 h-full'>
         <ParallaxBannerComponent />
       </div>
     </section>

@@ -9,7 +9,8 @@ import {
   ActivityHistory,
   AggregateActivityStats,
   AggregateActivityStatsList,
-  Item
+  Equipment,
+  ItemSocket
 } from './type'
 
 export const ROOT_PATH = 'https://www.bungie.net'
@@ -135,29 +136,38 @@ export async function fetchActivityHistoryWithDefinitions() {
 
 export async function fetchCharacterEquipment(character_endpoint: string) {
   const equipments = await fetchData(character_endpoint)
-  return { equipments: equipments.equipment.data.items }
+
+  const equipmentsWithDefinitions = await Promise.all(
+    equipments.equipment.data.items.map(async (equipment: Equipment) => {
+      const equipmentDef = await fetchEntityDefinition(
+        DEF_INVENTORY_ITEM,
+        equipment.itemHash
+      )
+
+      return {
+        ...equipment,
+        definition: equipmentDef
+      }
+    })
+  )
+  return equipmentsWithDefinitions
 }
 
 export async function fetchItemSockets(itemInstanceId: string) {
   const itemSockets = await fetchData(GET_ITEM_SOCKET(itemInstanceId))
-  return { itemSockets: itemSockets.sockets.data.sockets }
+
+  const itemSocketsWithDefinitions = await Promise.all(
+    itemSockets.sockets.data.sockets.map(async (socket: ItemSocket) => {
+      const socketDef = await fetchEntityDefinition(
+        DEF_INVENTORY_ITEM,
+        socket.plugHash as number
+      )
+
+      return {
+        ...socket,
+        definition: socketDef
+      }
+    })
+  )
+  return itemSocketsWithDefinitions
 }
-
-// export async function fetchCharacterEquipment(character_endpoint: string) {
-//   const equipments = await fetchData(character_endpoint)
-
-//   const equipmentsWithDefinitions = await Promise.all(
-//     equipments.equipment.data.items.slice(0, 4).map(async (equipment: Item) => {
-//       const equipmentDefinition = await fetchEntityDefinition(
-//         DEF_INVENTORY_ITEM,
-//         equipment.itemHash
-//       )
-
-//       return {
-//         ...equipment,
-//         definition: equipmentDefinition
-//       }
-//     })
-//   )
-//   return equipmentsWithDefinitions
-// }

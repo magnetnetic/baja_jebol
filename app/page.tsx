@@ -8,11 +8,9 @@ export default async function Home() {
   return (
     <div>
       <Nav />
+      <Hero />
       <Suspense>
-        <Hero />
-      </Suspense>
         <About />
-      <Suspense>
         <Char />
       </Suspense>
     </div>

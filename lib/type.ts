@@ -48,17 +48,18 @@ export type ActivityStat = ActivityHistory & {
   definition: ActivityDefinition
 }
 
-export type Item = {
-  itemHash: number
-  itemInstanceId: string
-  bucketHash: number
-  state: number
-}
-
-export type ItemStat = Item & {
-  definition: ItemDefinition
-  damageTypeDefinition: DamageTypeDefinition
-  itemSockets: ItemSocket[]
+export type InventoryItemDefinition = {
+  displayProperties: {
+    name: string
+    icon: string
+    description: string
+  }
+  itemTypeDisplayName: string
+  flavorText: string
+  itemTypeAndTierDisplayName: string
+  summaryItemHash: number
+  defaultDamageType?: number
+  defaultDamageTypeHash?: number
 }
 
 export type ItemSocket = {
@@ -67,8 +68,8 @@ export type ItemSocket = {
   isVisible: boolean
 }
 
-export type ItemSockets = {
-  itemSockets: ItemSocket[]
+export type itemSocketsWithDefinitions = ItemSocket & {
+  definition: InventoryItemDefinition
 }
 
 export type Equipment = {
@@ -82,20 +83,6 @@ export type Equipments = {
   equipments: Equipment[]
 }
 
-export type ItemDefinition = {
-  displayProperties: {
-    name: string
-    icon: string
-  }
-  screenshot: string
-  itemTypeDisplayName: string
-  flavorText: string
-  itemTypeAndTierDisplayName: string
-  summaryItemHash: number
-  defaultDamageType: number
-  defaultDamageTypeHash: number
-}
-
 export type DamageTypeDefinition = {
   displayProperties: {
     description: string
@@ -105,7 +92,7 @@ export type DamageTypeDefinition = {
   transparentIconPath: string
 }
 
-export type EquipmentWithDefinitions = Item & {
-  definition: Equipment
+export type EquipmentWithDefinitions = Equipment & {
+  definition: InventoryItemDefinition
   damageTypeDefinition: DamageTypeDefinition
 }

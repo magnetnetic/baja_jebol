@@ -46,7 +46,7 @@ export default function AboutDescription() {
 
 function Achievement() {
   return (
-    <div className='mb-4'>
+    <div>
       <div className='flex flex-row items-center justify-start gap-2'>
         <FontAwesomeIcon icon={faBolt} size='xs' className='text-amber-300' />
         <p>XBOX Stress Test Benchmarker ga mati 7 hari</p>
