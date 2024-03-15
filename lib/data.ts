@@ -9,8 +9,7 @@ import {
   ActivityHistory,
   AggregateActivityStats,
   AggregateActivityStatsList,
-  Item,
-  Socket
+  Item
 } from './type'
 
 export const ROOT_PATH = 'https://www.bungie.net'
@@ -22,7 +21,7 @@ const ACTIVITY_PATH =
 const AGGREGATE_ACTIVITY_PATH =
   '/Platform/Destiny2/3/Account/4611686018468068912/Character/2305843009344565737/Stats/AggregateActivityStats/'
 export const GET_CHARACTER_EQUIPMENT_TITAN =
-  '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009344565737/?components=205,305'
+  '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009344565737/?components=205'
 export const GET_CHARACTER_EQUIPMENT_HUNTER =
   '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009351224217/?components=205'
 export const GET_CHARACTER_EQUIPMENT_WARLOCK =
@@ -136,46 +135,29 @@ export async function fetchActivityHistoryWithDefinitions() {
 
 export async function fetchCharacterEquipment(character_endpoint: string) {
   const equipments = await fetchData(character_endpoint)
-
-  const equipmentsWithDefinitions = await Promise.all(
-    equipments.equipment.data.items
-      .slice(0, 12)
-      .map(async (equipment: Item) => {
-        const equipmentDefinition = await fetchEntityDefinition(
-          DEF_INVENTORY_ITEM,
-          equipment.itemHash
-        )
-        const damageTypeDefinition = await fetchEntityDefinition(
-          DEF_DAMAGE_TYPE,
-          equipmentDefinition.defaultDamageTypeHash
-        )
-
-        const sockets = await fetchItemSockets(equipment.itemInstanceId)
-        const itemSockets = await Promise.all(
-          sockets.sockets.data.sockets.map(async (socket: Socket) => {
-            const socketDefinition = await fetchEntityDefinition(
-              DEF_INVENTORY_ITEM,
-              socket.plugHash
-            )
-            return {
-              ...socket,
-              definition: socketDefinition
-            }
-          })
-        )
-
-        return {
-          ...equipment,
-          definition: equipmentDefinition,
-          damageTypeDefinition: damageTypeDefinition,
-          itemSockets
-        }
-      })
-  )
-  return equipmentsWithDefinitions
+  return { equipments: equipments.equipment.data.items }
 }
 
 export async function fetchItemSockets(itemInstanceId: string) {
   const itemSockets = await fetchData(GET_ITEM_SOCKET(itemInstanceId))
-  return itemSockets
+  return { itemSockets: itemSockets.sockets.data.sockets }
 }
+
+// export async function fetchCharacterEquipment(character_endpoint: string) {
+//   const equipments = await fetchData(character_endpoint)
+
+//   const equipmentsWithDefinitions = await Promise.all(
+//     equipments.equipment.data.items.slice(0, 4).map(async (equipment: Item) => {
+//       const equipmentDefinition = await fetchEntityDefinition(
+//         DEF_INVENTORY_ITEM,
+//         equipment.itemHash
+//       )
+
+//       return {
+//         ...equipment,
+//         definition: equipmentDefinition
+//       }
+//     })
+//   )
+//   return equipmentsWithDefinitions
+// }

@@ -11,6 +11,7 @@ const config = {
   prefix: '',
   theme: {
     fontSize: {
+      xs: '0.65rem',
       sm: '0.8rem',
       base: '1rem',
       lg: '1.125rem',
