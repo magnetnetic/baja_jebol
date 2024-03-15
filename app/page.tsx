@@ -11,9 +11,7 @@ export default async function Home() {
       <Suspense>
         <Hero />
       </Suspense>
-      <Suspense>
         <About />
-      </Suspense>
       <Suspense>
         <Char />
       </Suspense>
