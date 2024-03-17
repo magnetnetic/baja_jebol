@@ -36,21 +36,25 @@ export default async function PerksRow({
   )
 }
 
-function PerkIcon({ itemPerk }: { itemPerk: itemSocketsWithDefinitions }) {
+export function PerkIcon({
+  itemPerk
+}: {
+  itemPerk: itemSocketsWithDefinitions
+}) {
   return (
     <HoverCard openDelay={50} closeDelay={0}>
       <HoverCardTrigger asChild>
-        <div className='flex h-auto w-full flex-row items-center gap-1 opacity-85 hover:opacity-100'>
-          <div className='relative h-6 w-6'>
+        <div className='flex h-auto w-full flex-row items-center gap-1 text-sky-100 opacity-60 hover:opacity-100'>
+          <div className='relative h-4 w-4'>
             <Image
               fill
               alt={itemPerk.definition.displayProperties.name}
               style={{ objectFit: 'contain' }}
               src={`${ROOT_PATH}${itemPerk.definition.displayProperties.icon}`}
-              className='rounded-md '
+              className='rounded-md'
             />
           </div>
-          <label className='text-sm antialiased'>
+          <label className='text-xs antialiased'>
             {itemPerk.definition.displayProperties.name}
           </label>
         </div>

@@ -57,9 +57,10 @@ export type InventoryItemDefinition = {
   itemTypeDisplayName: string
   flavorText: string
   itemTypeAndTierDisplayName: string
-  summaryItemHash: number
+  summaryItemHash?: number
   defaultDamageType?: number
   defaultDamageTypeHash?: number
+  secondaryIcon?: string
 }
 
 export type ItemSocket = {
