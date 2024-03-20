@@ -61,6 +61,15 @@ export type InventoryItemDefinition = {
   defaultDamageType?: number
   defaultDamageTypeHash?: number
   secondaryIcon?: string
+  screenshot?: string
+}
+
+export type StatDefinition = {
+  displayProperties: {
+    description: string
+    name: string
+    hasIcon: boolean
+  }
 }
 
 export type ItemSocket = {
@@ -69,8 +78,17 @@ export type ItemSocket = {
   isVisible: boolean
 }
 
-export type itemSocketsWithDefinitions = ItemSocket & {
+export type ItemSocketsWithDefinitions = ItemSocket & {
   definition: InventoryItemDefinition
+}
+
+export type ItemStat = {
+  statHash: number
+  value: number
+}
+
+export type ItemStatsWithDefinitions = ItemStat & {
+  definition: StatDefinition
 }
 
 export type Equipment = {

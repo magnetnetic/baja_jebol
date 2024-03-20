@@ -2,7 +2,8 @@ import { unstable_noStore as noStore } from 'next/cache'
 import {
   DEF_ACTIVITY,
   DEF_DAMAGE_TYPE,
-  DEF_INVENTORY_ITEM
+  DEF_INVENTORY_ITEM,
+  DEF_STAT
 } from './definitions/entity'
 import {
   ActivityDefinition,
@@ -10,7 +11,8 @@ import {
   AggregateActivityStats,
   AggregateActivityStatsList,
   Equipment,
-  ItemSocket
+  ItemSocket,
+  ItemStat
 } from './type'
 
 export const ROOT_PATH = 'https://www.bungie.net'
@@ -27,8 +29,13 @@ export const GET_CHARACTER_EQUIPMENT_HUNTER =
   '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009351224217/?components=205'
 export const GET_CHARACTER_EQUIPMENT_WARLOCK =
   '/Platform/Destiny2/3/Profile/4611686018468068912/Character/2305843009417074253/?components=205'
+export const GET_HISTORICAL_STATS =
+  '/Platform/Destiny2/3/Account/4611686018468068912/Stats/?groups=1'
 export const GET_ITEM_SOCKET = (itemInstanceId: string) => {
   return `/Platform/Destiny2/3/Profile/4611686018468068912/Item/${itemInstanceId}/?components=305`
+}
+export const GET_ITEM_STATS = (itemInstanceId: string) => {
+  return `/Platform/Destiny2/3/Profile/4611686018468068912/Item/${itemInstanceId}/?components=304`
 }
 
 if (!API_KEY) {
@@ -36,7 +43,6 @@ if (!API_KEY) {
 }
 
 async function fetchData(path: string) {
-  noStore()
   const headers = new Headers()
   headers.append('x-api-key', API_KEY)
 
@@ -135,39 +141,36 @@ export async function fetchActivityHistoryWithDefinitions() {
 // CHARACTER DATA
 
 export async function fetchCharacterEquipment(character_endpoint: string) {
+  noStore()
   const equipments = await fetchData(character_endpoint)
 
-  const equipmentsWithDefinitions = await Promise.all(
-    equipments.equipment.data.items.map(async (equipment: Equipment) => {
-      const equipmentDef = await fetchEntityDefinition(
-        DEF_INVENTORY_ITEM,
-        equipment.itemHash
-      )
-
-      return {
-        ...equipment,
-        definition: equipmentDef
-      }
-    })
-  )
-  return equipmentsWithDefinitions
+  return equipments.equipment.data.items
 }
 
 export async function fetchItemSockets(itemInstanceId: string) {
   const itemSockets = await fetchData(GET_ITEM_SOCKET(itemInstanceId))
+  return itemSockets.sockets.data.sockets
+}
 
-  const itemSocketsWithDefinitions = await Promise.all(
-    itemSockets.sockets.data.sockets.map(async (socket: ItemSocket) => {
-      const socketDef = await fetchEntityDefinition(
-        DEF_INVENTORY_ITEM,
-        socket.plugHash as number
-      )
+export async function fetchItemStats(itemInstanceId: string) {
+  const itemStats = await fetchData(GET_ITEM_STATS(itemInstanceId))
+
+  const statsArray: ItemStat[] = Object.values(itemStats.stats.data.stats)
+  const itemStatsWithDefinitions = await Promise.all(
+    statsArray.map(async (stat: ItemStat) => {
+      const statDef = await fetchEntityDefinition(DEF_STAT, stat.statHash)
 
       return {
-        ...socket,
-        definition: socketDef
+        ...stat,
+        definition: statDef
       }
     })
   )
-  return itemSocketsWithDefinitions
+  return itemStatsWithDefinitions
+}
+
+export async function fetchHistoricalStats() {
+  const historicalStats = await fetchData(GET_HISTORICAL_STATS)
+
+  return historicalStats
 }

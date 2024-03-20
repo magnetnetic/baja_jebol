@@ -4,12 +4,12 @@ import {
   GET_CHARACTER_EQUIPMENT_WARLOCK,
   fetchCharacterEquipment
 } from '@/lib/data'
-import { EquipmentWithDefinitions } from '@/lib/type'
+import { Equipment, EquipmentWithDefinitions } from '@/lib/type'
 
 import EquipmentsWrapper from './equipment-card'
 
 export default async function CharacterEquipment() {
-  const titan: EquipmentWithDefinitions[] = await fetchCharacterEquipment(
+  const titan: Equipment[] = await fetchCharacterEquipment(
     GET_CHARACTER_EQUIPMENT_TITAN
   )
   return (

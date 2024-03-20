@@ -23,7 +23,17 @@ function useIsScrolled(threshold = 30) {
   return isScrolled
 }
 
-export default function Nav() {
+export default function Nav({
+  PvPDeaths,
+  PvEDeaths,
+  PvPSudoku,
+  PvESudoku
+}: {
+  PvPDeaths: string
+  PvEDeaths: string
+  PvPSudoku: string
+  PvESudoku: string
+}) {
   const isScrolled = useIsScrolled(10)
 
   const navbarClass = !isScrolled
@@ -37,7 +47,14 @@ export default function Nav() {
       <div className='container'>
         <div className='flex flex-row items-center justify-between'>
           <Link href='/'>Baja Jebol</Link>
-          <div>Death Counter: </div>
+          <div className='flex flex-col items-center'>
+            <span className='text-sm'>PvP Death Counter: {PvPDeaths} 🗿 </span>
+            <span className='text-sm'>PvE Death Counter: {PvEDeaths} </span>
+          </div>
+          <div className='flex flex-col items-center'>
+            <span className='text-sm'>PvP Sudoku: {PvPSudoku} 🗿 </span>
+            <span className='text-sm'>PvE Sudoku: {PvESudoku} </span>
+          </div>
         </div>
       </div>
     </div>
