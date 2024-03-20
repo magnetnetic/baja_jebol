@@ -25,6 +25,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { DEF_INVENTORY_ITEM } from '@/lib/definitions/entity'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { SubclassCard } from './subclass-card'
 
 export default async function EquipmentsWrapper({
   equipments
@@ -63,75 +64,6 @@ export default async function EquipmentsWrapper({
           </Suspense>
         </div>
       ))}
-    </div>
-  )
-}
-
-async function SubclassCard({ subclass }: { subclass: Equipment }) {
-  const definition: InventoryItemDefinition = await fetchEntityDefinition(
-    DEF_INVENTORY_ITEM,
-    subclass.itemHash
-  )
-  const subclassPerks: ItemSocket[] = await fetchItemSockets(
-    subclass.itemInstanceId
-  )
-
-  return (
-    <div className='mb-3 flex flex-row gap-2 px-4'>
-      <div className='flex w-full items-center border-b border-amber-300/75 pb-3'>
-        <div className='flex w-full flex-col'>
-          <div className='flex gap-4'>
-            <div className='relative h-14 w-14'>
-              <Image
-                alt='subclass'
-                src={`${ROOT_PATH}${definition.displayProperties.icon}`}
-                fill
-                style={{ objectFit: 'contain' }}
-              />
-            </div>
-            <div className='flex flex-col justify-center text-sky-100'>
-              <h3 className='-mb-0.5 text-lg font-semibold antialiased'>
-                {definition.displayProperties.name}
-              </h3>
-              <span className='text-sm text-muted text-sky-200 antialiased'>
-                {definition.itemTypeDisplayName}
-              </span>
-            </div>
-          </div>
-          <Suspense fallback={<Skeleton className='ms-16 h-20 w-3/4' />}>
-            <div className='ml-[72px] flex w-3/4 flex-row flex-wrap text-sky-100'>
-              {subclassPerks.slice(0, 11).map((socket, index) => {
-                return (
-                  <div key={index}>
-                    <SubclassPerk plugHash={socket.plugHash as number} />
-                  </div>
-                )
-              })}
-            </div>
-          </Suspense>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-async function SubclassPerk({ plugHash }: { plugHash: number }) {
-  const definition: InventoryItemDefinition = await fetchEntityDefinition(
-    DEF_INVENTORY_ITEM,
-    plugHash
-  )
-  return (
-    <div className='me-2 flex flex-row gap-1 opacity-60 hover:opacity-100'>
-      <div className='relative h-4 w-4'>
-        <Image
-          fill
-          alt='potato'
-          style={{ objectFit: 'contain' }}
-          src={`${ROOT_PATH}${definition.displayProperties.icon}`}
-          className='rounded-md'
-        />
-      </div>
-      <label className='text-xs'>{definition.displayProperties.name}</label>
     </div>
   )
 }

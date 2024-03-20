@@ -28,8 +28,12 @@ export default async function Home() {
         }
       />
       <Hero />
-      <About />
-      <Char />
+      <Suspense>
+        <About />
+      </Suspense>
+      <Suspense>
+        <Char />
+      </Suspense>
     </div>
   )
 }

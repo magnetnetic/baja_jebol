@@ -62,6 +62,24 @@ export type InventoryItemDefinition = {
   defaultDamageTypeHash?: number
   secondaryIcon?: string
   screenshot?: string
+  perks: Perk[]
+}
+
+export type Perk = {
+  requirementDisplayString: string
+  perkHash: number
+}
+
+export type SandboxPerkDefinition = {
+  displayProperties: {
+    description: string
+    name: string
+    icon: string
+    hasIcon: boolean
+  }
+  isDisplayable: boolean
+  hash: number
+  index: number
 }
 
 export type StatDefinition = {
