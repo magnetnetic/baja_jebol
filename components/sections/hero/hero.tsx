@@ -12,12 +12,11 @@ export default function Hero() {
       <div className='flex h-full w-full'>
         <ParallaxBanner className='h-screen'>
           <ParallaxBannerLayer
-            className='h-full bg-black'
+            className='bg-black'
             expanded={false}
-            speed={-80}
-            opacity={[0.8, 1]}
+            speed={-100}
           >
-            <div className='relative h-full w-full bg-cover bg-right-bottom opacity-80 sm:bg-right-bottom md:bg-center'>
+            <div className='h-full w-full bg-cover bg-right-bottom opacity-80 sm:bg-right-bottom md:bg-center'>
               <HeroBackground />
             </div>
           </ParallaxBannerLayer>
