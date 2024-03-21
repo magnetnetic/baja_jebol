@@ -28,7 +28,7 @@ export default async function Home() {
         }
       />
       <Hero />
-      <Suspense fallback={<p>.......</p>}>
+      <Suspense>
         <About />
       </Suspense>
       <Suspense>

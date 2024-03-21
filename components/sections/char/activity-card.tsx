@@ -40,7 +40,7 @@ export default function ActivityCard({ activity }: { activity: ActivityStat }) {
           <p>{activity.period}</p>
         </div>
       </div>
-      <Meteors number={10} />
+      {/* <Meteors number={10} /> */}
     </div>
   )
 }

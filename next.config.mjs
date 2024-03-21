@@ -2,11 +2,11 @@
 const nextConfig = {
   images: {
     loader: 'default',
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'bungie.net'
+        hostname: 'bungie.net',
+        port: ''
       }
     ]
   }

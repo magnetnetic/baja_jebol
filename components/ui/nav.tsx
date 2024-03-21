@@ -47,14 +47,14 @@ export default function Nav({
       <div className='container'>
         <div className='flex flex-row items-center justify-between'>
           <Link href='/'>Baja Jebol</Link>
-          <div className='flex flex-col items-center'>
+          {/* <div className='flex flex-col items-center'>
             <span className='text-sm'>PvP Death Counter: {PvPDeaths} 🗿 </span>
             <span className='text-sm'>PvE Death Counter: {PvEDeaths} </span>
           </div>
           <div className='flex flex-col items-center'>
             <span className='text-sm'>PvP Sudoku: {PvPSudoku} 🗿 </span>
             <span className='text-sm'>PvE Sudoku: {PvESudoku} </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
