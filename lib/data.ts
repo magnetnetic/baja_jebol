@@ -37,6 +37,9 @@ export const GET_ITEM_SOCKET = (itemInstanceId: string) => {
 export const GET_ITEM_STATS = (itemInstanceId: string) => {
   return `/Platform/Destiny2/3/Profile/4611686018468068912/Item/${itemInstanceId}/?components=304`
 }
+export const GET_ITEM_COMMON_DATA = (itemInstanceId: string) => {
+  return `/Platform/Destiny2/3/Profile/4611686018468068912/Item/${itemInstanceId}/?components=307`
+}
 
 if (!API_KEY) {
   throw new Error('API_KEY is not defined')
@@ -150,6 +153,11 @@ export async function fetchCharacterEquipment(character_endpoint: string) {
 export async function fetchItemSockets(itemInstanceId: string) {
   const itemSockets = await fetchData(GET_ITEM_SOCKET(itemInstanceId))
   return itemSockets.sockets.data.sockets
+}
+
+export async function fetchItemCommonData(itemInstanceId: string) {
+  const itemCommonData = await fetchData(GET_ITEM_COMMON_DATA(itemInstanceId))
+  return itemCommonData.item.data
 }
 
 export async function fetchItemStats(itemInstanceId: string) {

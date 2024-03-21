@@ -5,9 +5,9 @@ export default function Hero() {
   return (
     <section
       id='hero'
-      className='relative flex h-[50vh] flex-row items-center justify-center bg-blue-50 bg-gradient-to-r from-black from-20% via-sky-700 via-50% to-black to-80% md:h-[100vh]'
+      className='relative flex h-[75vh] flex-row items-center justify-center md:h-[100vh]'
     >
-      <div className='absolute h-full w-full opacity-50'>
+      <div className='absolute h-full w-full opacity-70'>
         <HeroBackground />
       </div>
       <div className='container relative flex flex-col items-center justify-center text-white'>

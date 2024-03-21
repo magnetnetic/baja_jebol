@@ -16,7 +16,7 @@ export default async function PerksRow({
   const itemPerks: ItemSocketsWithDefinitions[] =
     await fetchItemSockets(itemInstanceId)
   return (
-    <div className='flex w-full flex-row flex-wrap gap-x-3'>
+    <div className='flex w-full flex-wrap'>
       {itemPerks
         // ?.filter(socket =>
         //   socket.definition && socket.definition.summaryItemHash
@@ -28,7 +28,7 @@ export default async function PerksRow({
         .map(
           (socket, index) =>
             socket.isVisible && (
-              <div key={index} className='me-3'>
+              <div key={index}>
                 <PerkIcon itemPerk={socket} />
               </div>
             )
@@ -45,7 +45,7 @@ async function PerkIcon({ itemPerk }: { itemPerk: ItemSocket }) {
   return (
     <HoverCard openDelay={0} closeDelay={0}>
       <HoverCardTrigger>
-        <div className='flex h-auto w-full flex-row items-center gap-1 text-sky-100 opacity-60 hover:opacity-100'>
+        <div className='me-2 flex gap-1 py-1 opacity-60 hover:opacity-100'>
           <div className='relative h-4 w-4'>
             <Image
               fill

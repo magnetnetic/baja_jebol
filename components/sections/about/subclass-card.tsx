@@ -52,14 +52,17 @@ export async function SubclassCard({ subclass }: { subclass: Equipment }) {
           </div>
         </div>
         <Suspense fallback={<Skeleton className='ms-16 h-20 w-3/4' />}>
-          <div className='ml-[72px] flex w-3/4 flex-row flex-wrap'>
-            {subclassPerks.slice(0, 11).map((socket, index) => {
-              return (
-                <div key={index}>
-                  <SubclassPerk plugHash={socket.plugHash as number} />
-                </div>
-              )
-            })}
+          <div className='ml-[72px] flex w-3/4 flex-wrap'>
+            {subclassPerks
+              .filter((_, index) => index !== 5 && index !== 6)
+              .slice(0, 9)
+              .map((socket, index) => {
+                return (
+                  <div key={index}>
+                    <SubclassPerk plugHash={socket.plugHash as number} />
+                  </div>
+                )
+              })}
           </div>
         </Suspense>
       </div>
@@ -90,7 +93,7 @@ async function Aspect({ plugHash }: { plugHash: number }) {
         </div>
       </PopoverTrigger>
       <PopoverContent className='w-80 rounded-lg bg-slate-800 p-4'>
-        <div className='flex items-center space-x-2'>
+        <div className='flex items-center space-x-2 pb-3'>
           <div className='relative h-6 w-6'>
             <Image
               fill
@@ -105,9 +108,9 @@ async function Aspect({ plugHash }: { plugHash: number }) {
           </h3>
         </div>
         <div>
-          <span className='text-xs italic text-muted text-sky-100'>
+          <p className='text-justify text-xs italic text-muted text-sky-100'>
             {definition.flavorText}
-          </span>
+          </p>
           <hr className='my-2 border-white' />
           <span className='text-xs text-sky-50'>
             {sandboxPerk.displayProperties.description}

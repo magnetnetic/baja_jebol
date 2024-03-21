@@ -10,7 +10,7 @@ export default function AboutDescription() {
       className='text-sky-100'
       initial='offscreen'
       whileInView='onscreen'
-      viewport={{ once: true, amount: 0.8 }}
+      viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 0.8 }}
       variants={{
         offscreen: { x: -100, opacity: 0 },
@@ -31,6 +31,7 @@ export default function AboutDescription() {
               icon={faDiscord}
               size='xs'
               className='text-amber-300'
+              shake
             />
             <p className='font-semibold'>warduck23</p>{' '}
             <p>/ dia lanang mazzeh</p>

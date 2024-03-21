@@ -96,6 +96,15 @@ export type ItemSocket = {
   isVisible: boolean
 }
 
+export type ItemCommonData = {
+  itemHash: number
+  itemInstanceId: string
+  quantity: number
+  bucketHash: number
+  state: number
+  overrideStyleItemHash?: number
+}
+
 export type ItemSocketsWithDefinitions = ItemSocket & {
   definition: InventoryItemDefinition
 }
