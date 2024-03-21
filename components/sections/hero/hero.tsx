@@ -44,6 +44,7 @@ export default function Hero() {
 function HeroBackground() {
   return (
     <Image
+      quality={100}
       priority
       alt='Background'
       src={titan}
