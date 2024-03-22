@@ -16,13 +16,13 @@ export default function Hero() {
             expanded={false}
             speed={-100}
           >
-            <div className='h-full w-full bg-cover bg-right-bottom opacity-80 sm:bg-right-bottom md:bg-center'>
+            <div className='fixed h-full w-full opacity-80'>
               <HeroBackground />
             </div>
           </ParallaxBannerLayer>
           <ParallaxBannerLayer
             className='my-auto flex h-full'
-            speed={-40}
+            speed={-50}
             expanded={true}
           >
             <div className='flex w-full flex-col items-center justify-center space-y-2 text-white'>
