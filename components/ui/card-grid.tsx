@@ -28,7 +28,7 @@ export default async function CardGrid() {
     await fetchRaidDataWithDefinitions(raidDefinitionHashes)
 
   return (
-    <div className='grid w-full grid-cols-2 justify-between gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4'>
+    <div className='grid w-full grid-cols-2 justify-between gap-4'>
       {raidStats.map(raidStat => {
         return (
           <div key={raidStat.activityHash}>

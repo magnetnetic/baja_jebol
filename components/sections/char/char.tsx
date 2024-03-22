@@ -13,16 +13,16 @@ export default async function Char() {
   }
 
   return (
-    <section id='char' className='flex h-full flex-col bg-blue-950 pt-4'>
-      <div className='container flex flex-col gap-4 text-sky-100'>
-        <div className='grid w-full grid-cols-1 gap-4 md:w-1/2'>
+    <section id='char' className='container mb-8 flex flex-col pt-4'>
+      <div className='grid grid-rows-1 gap-4 text-sky-100 md:grid-cols-2'>
+        <div className='flex flex-col gap-4'>
           {activityStats.map((activity: ActivityStat) => (
-            <div key={activity.period}>
+            <div key={activity.period} className='bg-black'>
               <ActivityCard activity={activity} />
             </div>
           ))}
         </div>
-        <div className='mb-8'>
+        <div>
           <CardGrid />
         </div>
       </div>

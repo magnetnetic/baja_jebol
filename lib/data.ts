@@ -122,6 +122,7 @@ export const fetchFilteredRaidStats = async (
 // ACTIVITY HISTORY DATA
 
 export async function fetchActivityHistoryWithDefinitions() {
+  noStore()
   const activityHistory = await fetchActivityHistory()
 
   const activitiesWithDefinitions = await Promise.all(
