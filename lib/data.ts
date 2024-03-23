@@ -16,7 +16,7 @@ import {
 } from './type'
 
 export const ROOT_PATH = 'https://www.bungie.net'
-const API_KEY = 'fb4d7364a9af4ac0a2bdd12d69ae72b1'
+const API_KEY = process.env.X_API_KEY as string
 const PROFILE_PATH =
   '/Platform/Destiny2/3/Profile/4611686018468068912/?components=200'
 const ACTIVITY_PATH =
@@ -39,10 +39,6 @@ export const GET_ITEM_STATS = (itemInstanceId: string) => {
 }
 export const GET_ITEM_COMMON_DATA = (itemInstanceId: string) => {
   return `/Platform/Destiny2/3/Profile/4611686018468068912/Item/${itemInstanceId}/?components=307`
-}
-
-if (!API_KEY) {
-  throw new Error('API_KEY is not defined')
 }
 
 async function fetchData(path: string) {
