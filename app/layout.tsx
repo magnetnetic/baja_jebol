@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${inter.className} scroll-smooth bg-blue-950`}>
         <Providers>{children}</Providers>
+        <SpeedInsights />
       </body>
     </html>
   )
