@@ -1,6 +1,7 @@
 import About from '@/components/sections/about/about'
 import Char from '@/components/sections/char/char'
 import Hero from '@/components/sections/hero/hero'
+import Weapon from '@/components/sections/weapon/weapon'
 import Nav from '@/components/ui/nav'
 import { fetchHistoricalStats } from '@/lib/data'
 import React, { Suspense } from 'react'
@@ -34,6 +35,7 @@ export default async function Home() {
       <Suspense>
         <Char />
       </Suspense>
+      <Weapon />
     </div>
   )
 }

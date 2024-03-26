@@ -14,6 +14,11 @@ import {
   ItemSocket,
   ItemStat
 } from './type'
+import {
+  DEATHBRINGER,
+  GJALLARHORN,
+  heavyWeapons
+} from './definitions/weapon/heavy'
 
 export const ROOT_PATH = 'https://www.bungie.net'
 const API_KEY = process.env.X_API_KEY as string
@@ -178,4 +183,22 @@ export async function fetchHistoricalStats() {
   const historicalStats = await fetchData(GET_HISTORICAL_STATS)
 
   return historicalStats
+}
+
+// WEAPON DATA
+export async function fetchWeapon() {
+  const randomIndex = Math.floor(Math.random() * heavyWeapons.length)
+  const randomHash = heavyWeapons[randomIndex]
+  const perkIcon = await fetchEntityDefinition(DEF_INVENTORY_ITEM, randomHash)
+
+  return perkIcon
+}
+
+export async function fetchPerkIcon(singleInitialItemHash: number) {
+  const perkDetails = await fetchEntityDefinition(
+    DEF_INVENTORY_ITEM,
+    singleInitialItemHash
+  )
+
+  return perkDetails
 }

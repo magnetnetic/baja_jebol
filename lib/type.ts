@@ -54,6 +54,11 @@ export type InventoryItemDefinition = {
     icon: string
     description: string
   }
+  sockets: {
+    socketEntries: {
+      singleInitialItemHash: number
+    }
+  }
   itemTypeDisplayName: string
   flavorText: string
   itemTypeAndTierDisplayName: string
